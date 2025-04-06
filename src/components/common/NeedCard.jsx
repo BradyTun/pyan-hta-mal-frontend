@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { FaChevronDown, FaChevronUp, FaMapMarkerAlt, FaClock, FaInfoCircle } from 'react-icons/fa';
+import React from 'react';
+import { FaChevronDown, FaMapMarkerAlt, FaClock, FaInfoCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const NeedCard = ({ need }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-
     const getUrgencyColor = (urgency) => {
         return urgency === 'High'
             ? 'bg-red-500 text-white'
@@ -44,42 +43,14 @@ const NeedCard = ({ need }) => {
                 </div>
             </div>
 
-            {/* Expandable Section for Logistics */}
+            {/* Link to Details Page */}
             {need.logistics && (
-                <>
-                    <button
-                        className="mt-4 flex items-center text-blue-600 font-semibold text-sm hover:underline"
-                        onClick={() => setIsExpanded(!isExpanded)}
-                    >
-                        {isExpanded ? (
-                            <>
-                                Show Less <FaChevronUp className="ml-2" />
-                            </>
-                        ) : (
-                            <>
-                                Show More <FaChevronDown className="ml-2" />
-                            </>
-                        )}
-                    </button>
-
-                    {isExpanded && (
-                        <div className="mt-4 space-y-3 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                            <h3 className="font-semibold text-gray-700 dark:text-white text-sm">Logistics Info:</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-300">
-                                <strong>Donors:</strong> {need.logistics?.donors || 'N/A'}
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-300">
-                                <strong>Suppliers:</strong> {need.logistics?.suppliers || 'N/A'}
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-300">
-                                <strong>Estimated Arrival:</strong> {need.logistics?.estimatedArrival || 'N/A'}
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-300">
-                                <strong>Solution Suggestions:</strong> {need.logistics?.solutionSuggestions || 'N/A'}
-                            </p>
-                        </div>
-                    )}
-                </>
+                <Link
+                    to={`/needs/${need.id}`}
+                    className="mt-4 flex items-center text-blue-600 font-semibold text-sm hover:underline"
+                >
+                    Show More
+                </Link>
             )}
         </div>
     );

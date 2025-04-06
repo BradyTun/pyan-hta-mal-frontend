@@ -1,4 +1,5 @@
 import React from "react";
+import { FaExclamationTriangle, FaCheckCircle, FaUsers, FaTruck, FaExternalLinkAlt } from "react-icons/fa";
 
 const Need = () => {
     const need = {
@@ -8,8 +9,14 @@ const Need = () => {
         priority: 8,
         type: "Infrastructure",
         term: "Short-term",
-        donors: ["Donor A", "Donor B"],
-        suppliers: ["Supplier X", "Supplier Y"],
+        donors: [
+            { name: "Donor A", link: "https://example.com/donor-a" },
+            { name: "Donor B", link: "https://example.com/donor-b" },
+        ],
+        suppliers: [
+            { name: "Supplier X", link: "https://example.com/supplier-x" },
+            { name: "Supplier Y", link: "https://example.com/supplier-y" },
+        ],
         suggestedSolutions: [
             "Install water purification systems",
             "Distribute bottled water",
@@ -24,14 +31,20 @@ const Need = () => {
     };
 
     return (
-        <div className="min-h-screen text-gray-800 p-6">
-            <div className="mx-auto bg-white rounded-lg p-6">
-                <h1 className="text-3xl font-bold text-primary mb-4">{need.title}</h1>
-                <p className="text-lg text-gray-600 mb-6">{need.description}</p>
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-secondary p-6">
+            {/* Header */}
+            <header className="bg-primary z-20 text-white fixed top-0 left-0 w-full shadow-md py-4 px-6 text-2xl font-bold">
+                {need.title}
+            </header>
 
-                <div className="mb-6">
-                    <h2 className="text-xl font-semibold text-primary mb-2">Details</h2>
-                    <div className="grid grid-cols-2 gap-4">
+            <div className="max-w-3xl mx-auto mt-16 p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
+                {/* Description */}
+                <p className="text-lg text-gray-200 dark:text-gray-300 mt-2">{need.description}</p>
+
+                {/* Details */}
+                <div className="mt-6">
+                    <h2 className="text-xl font-semibold text-primary">Details</h2>
+                    <div className="grid grid-cols-2 text-gray-200 gap-4 mt-4">
                         <p>
                             <strong>Zone:</strong> {need.zone}
                         </p>
@@ -57,42 +70,68 @@ const Need = () => {
                     </div>
                 </div>
 
-                <div className="mb-6">
-                    <h2 className="text-xl font-semibold text-primary mb-2">Donors</h2>
-                    <ul className="list-disc list-inside text-gray-600">
+                {/* Donors */}
+                <div className="mt-6">
+                    <h2 className="text-xl font-semibold text-primary flex items-center gap-2">
+                        <FaUsers className="text-blue-500" /> Donors
+                    </h2>
+                    <ul className="mt-2 space-y-3">
                         {need.donors.map((donor, index) => (
-                            <li key={index}>{donor}</li>
+                            <li key={index} className="flex items-center gap-3 bg-gray-100 dark:bg-gray-700 p-3 rounded-lg">
+                                <FaCheckCircle className="text-green-500" />
+                                <a
+                                    href={donor.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-500 hover:underline"
+                                >
+                                    {donor.name}
+                                </a>
+                                <FaExternalLinkAlt className="text-blue-500" />
+
+                            </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className="mb-6">
-                    <h2 className="text-xl font-semibold text-primary mb-2">Suppliers</h2>
-                    <ul className="list-disc list-inside text-gray-600">
+                {/* Suppliers */}
+                <div className="mt-6">
+                    <h2 className="text-xl font-semibold text-primary flex items-center gap-2">
+                        <FaTruck className="text-yellow-500" /> Suppliers
+                    </h2>
+                    <ul className="mt-2 space-y-3">
                         {need.suppliers.map((supplier, index) => (
-                            <li key={index}>{supplier}</li>
+                            <li key={index} className="flex items-center gap-3 bg-gray-100 dark:bg-gray-700 p-3 rounded-lg">
+                                <FaCheckCircle className="text-yellow-400" />
+                                <a
+                                    href={supplier.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-500 hover:underline"
+                                >
+                                    {supplier.name}
+                                </a>
+                                <FaExternalLinkAlt className="text-blue-500" />
+                            </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className="mb-6">
-                    <h2 className="text-xl font-semibold text-primary mb-2">Suggested Solutions</h2>
-                    <ul className="list-disc list-inside text-gray-600">
+                {/* Suggested Solutions */}
+                <div className="mt-6">
+                    <h2 className="text-xl font-semibold text-primary">Suggested Solutions</h2>
+                    <ul className="mt-2 space-y-3">
                         {need.suggestedSolutions.map((solution, index) => (
-                            <li key={index}>{solution}</li>
+                            <li key={index} className="flex items-center gap-3 bg-gray-100 dark:bg-gray-700 p-3 rounded-lg">
+                                <FaExclamationTriangle className="text-red-500" />
+                                <span className="text-gray-800 dark:text-gray-200">{solution}</span>
+                            </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className="mt-6 border-t border-gray-300 pt-4">
-                    <h3 className="text-lg font-semibold text-primary mb-2">Comments</h3>
-                    <p className="text-gray-600">No comments yet.</p>
-
-                    <h3 className="text-lg font-semibold text-primary mt-4 mb-2">Update Log</h3>
-                    <p className="text-gray-600">No updates yet.</p>
-                </div>
-
-                <button className="w-full bg-primary text-white py-3 rounded-lg font-medium text-center hover:bg-secondary hover:text-primary transition-colors duration-300 mt-6">
+                {/* Action Button */}
+                <button className="w-full mt-6 bg-primary text-white py-3 rounded-lg font-medium text-center hover:bg-secondary hover:text-primary transition-colors duration-300">
                     Take Action
                 </button>
             </div>

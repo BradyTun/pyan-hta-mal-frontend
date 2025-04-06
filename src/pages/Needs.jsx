@@ -111,13 +111,6 @@ const Needs = () => {
                     <option value="Zone 2">Zone 2</option>
                     <option value="Zone 3">Zone 3</option>
                 </select>
-                <input
-                    type="number"
-                    placeholder="Min Urgency"
-                    value={urgencyFilter}
-                    onChange={(e) => setUrgencyFilter(e.target.value)}
-                    className="w-full md:w-1/4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
             </div>
             {filteredNeeds.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

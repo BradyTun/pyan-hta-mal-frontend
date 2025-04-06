@@ -1,5 +1,5 @@
 import React from "react";
-import { FaMapMarkerAlt, FaExclamationTriangle } from "react-icons/fa";
+import { FaMapMarkerAlt, FaExclamationTriangle, FaUsers } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ZoneCard = ({ zone = {} }) => {
@@ -23,6 +23,12 @@ const ZoneCard = ({ zone = {} }) => {
                     <FaExclamationTriangle className="text-red-500 mr-2" />
                     <span className="text-sm">
                         <strong className="text-gray-800 dark:text-white">Severity Level:</strong> {zone.severityLevel}/10
+                    </span>
+                </div>
+                <div className="flex items-center text-gray-600 dark:text-gray-300">
+                    <FaUsers className="text-green-500 mr-2" />
+                    <span className="text-sm">
+                        <strong className="text-gray-800 dark:text-white">Affected Population:</strong> {zone.affectedPopulation}
                     </span>
                 </div>
             </div>

@@ -13,6 +13,7 @@ const Zones = () => {
             timestamp: "2023-10-01",
             severityLevel: 5,
             prioritizedNeeds: ["Water", "Food", "Shelter"],
+            affectedPopulation : "~ 5000",
             risks: [
                 { name: "Flood", severity: 7 },
                 { name: "Landslide", severity: 5 },
@@ -23,6 +24,7 @@ const Zones = () => {
             location: "Region 2",
             timestamp: "2023-10-02",
             severityLevel: 8,
+            affectedPopulation : "~ 5000",
             prioritizedNeeds: ["Food", "Medicine", "Clothing"],
             risks: [
                 { name: "Earthquake", severity: 9 },
@@ -34,6 +36,7 @@ const Zones = () => {
             location: "Region 1",
             timestamp: "2023-10-03",
             severityLevel: 3,
+            affectedPopulation : "~ 5000",
             prioritizedNeeds: ["Shelter", "Water", "Electricity"],
             risks: [
                 { name: "Storm", severity: 4 },
@@ -45,6 +48,7 @@ const Zones = () => {
             location: "Region 3",
             timestamp: "2023-10-04",
             severityLevel: 7,
+            affectedPopulation : "~ 5000",
             prioritizedNeeds: ["Medicine", "Food", "Water"],
             risks: [
                 { name: "Drought", severity: 8 },
@@ -79,13 +83,35 @@ const Zones = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 />
-                <input
-                    type="text"
-                    placeholder="Filter by need"
+                <select
+                    value={severityFilter}
+                    onChange={(e) => setSeverityFilter(Number(e.target.value))}
+                    className="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                    <option value={10}>Severity: All</option>
+                    <option value={1}>Severity: 1</option>
+                    <option value={2}>Severity: 2</option>
+                    <option value={3}>Severity: 3</option>
+                    <option value={4}>Severity: 4</option>
+                    <option value={5}>Severity: 5</option>
+                    <option value={6}>Severity: 6</option>
+                    <option value={7}>Severity: 7</option>
+                    <option value={8}>Severity: 8</option>
+                    <option value={9}>Severity: 9</option>
+                </select>
+                <select
                     value={needFilter}
                     onChange={(e) => setNeedFilter(e.target.value)}
                     className="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                >
+                    <option value="">Need: All</option>
+                    <option value="Water">Water</option>
+                    <option value="Food">Food</option>
+                    <option value="Shelter">Shelter</option>
+                    <option value="Medicine">Medicine</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Electricity">Electricity</option>
+                </select>
             </div>
             {Object.keys(filteredZones).length > 0 ? (
                 Object.keys(filteredZones).map((region) => (
